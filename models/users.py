@@ -26,7 +26,7 @@ class DefaultCompany(BaseModel):
 
 
 class DefaultUser(BaseModel):
-    id: int = Field(default_factory=fake.unique.random_int)
+    id: int = 5
     name: str = Field(default_factory=fake.name)
     username: str = Field(default_factory=fake.user_name)
     email: str = Field(default_factory=fake.email)

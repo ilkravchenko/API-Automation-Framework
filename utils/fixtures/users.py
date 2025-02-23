@@ -1,3 +1,4 @@
+import random
 import pytest
 
 from base.api.users_api import UsersClient
@@ -15,7 +16,12 @@ def class_users_client() -> UsersClient:
 
 @pytest.fixture(scope='function')
 def function_user(class_users_client: UsersClient) -> DefaultUser:
-    question = class_users_client.create_user()
-    yield question
+    user = class_users_client.create_user()
+    yield user
 
-    class_users_client.delete_user_api(question.id)
+    class_users_client.delete_user_api(user.id)
+
+
+@pytest.fixture(scope="function")
+def function_existing_user():
+    return random.randint(1, 10)

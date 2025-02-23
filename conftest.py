@@ -1,3 +1,3 @@
 pytest_plugins = (
-    'utils.fixtures.questions',
+    'utils.fixtures.users',
 )

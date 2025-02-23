@@ -24,7 +24,7 @@ class AssertionBase:
         Expected: {self.expected} {type(self.expected)}
         Actual: {actual} {type(actual)}
 
-        Expression: assert {self.expected} {method} {actual}
+        Expression: assert {self.expected} {method.value} {actual}
         """
 
     def set_description(self, description: str):

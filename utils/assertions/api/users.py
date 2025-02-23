@@ -16,11 +16,11 @@ def assert_user(
 
     expect(expected_user["email"]) \
         .set_description("User 'email'") \
-        .to_equal(actual_user.email)
+        .to_be_equal(actual_user.email)
 
     expect(expected_user["address"]) \
         .set_description("User 'address'") \
-        .to_be_equal(actual_user.address.model_dump())
+        .to_be_equal(actual_user.address.model_dump(by_alias=True))
 
     expect(expected_user["address"]["street"]) \
         .set_description("User 'address.street'") \
@@ -40,7 +40,7 @@ def assert_user(
 
     expect(expected_user["address"]["geo"]) \
         .set_description("User 'address.geo'") \
-        .to_be_equal(actual_user.address.geo.model_dump())
+        .to_be_equal(actual_user.address.geo.model_dump(by_alias=True))
 
     expect(expected_user["address"]["geo"]["lat"]) \
         .set_description("User 'address.geo.lat'") \
@@ -56,11 +56,11 @@ def assert_user(
 
     expect(expected_user["website"]) \
         .set_description("User 'website'") \
-        .to_be_equal(actual_user.phone)
+        .to_be_equal(actual_user.website)
 
     expect(expected_user["company"]) \
         .set_description("User 'company'") \
-        .to_be_equal(actual_user.company.model_dump())
+        .to_be_equal(actual_user.company.model_dump(by_alias=True))
 
     expect(expected_user["company"]["name"]) \
         .set_description("User 'company.name'") \
