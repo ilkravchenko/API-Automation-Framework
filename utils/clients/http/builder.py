@@ -4,7 +4,7 @@ from settings import base_settings
 from utils.clients.http.client import HTTPClient
 
 
-def get_http_client(
+async def get_http_client(
     auth: Authentication | None = None,
     base_url: str = base_settings.api_url
 ) -> HTTPClient:
@@ -17,7 +17,7 @@ def get_http_client(
     authentication_client = AuthenticationClient(client=client)
 
     if (not auth.auth_token) and auth.user:
-        token = authentication_client.get_auth_token(auth.user)
+        token = await authentication_client.get_auth_token(auth.user)
         headers = {**headers, 'Authorization': f'Token {token}'}
 
     if auth.auth_token and (not auth.user):

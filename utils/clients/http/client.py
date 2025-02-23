@@ -1,16 +1,16 @@
 import typing
 
 import allure
-from httpx import Client, Response
+from httpx import Response, AsyncClient
 from httpx._client import UseClientDefault
 from httpx._types import (AuthTypes, CookieTypes, HeaderTypes, QueryParamTypes,
                           RequestContent, RequestData, RequestExtensions,
                           RequestFiles, TimeoutTypes, URLTypes)
 
 
-class HTTPClient(Client):
+class HTTPClient(AsyncClient):
     @allure.step('Making GET request to "{url}"')
-    def get(
+    async def get(
         self,
         url: URLTypes,
         *,
@@ -22,7 +22,7 @@ class HTTPClient(Client):
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
         extensions: typing.Optional[RequestExtensions] = None
     ) -> Response:
-        return super().get(
+        return await super().get(
             url=url,
             params=params,
             headers=headers,
@@ -34,7 +34,7 @@ class HTTPClient(Client):
         )
 
     @allure.step('Making POST request to "{url}"')
-    def post(
+    async def post(
         self,
         url: URLTypes,
         *,
@@ -50,7 +50,7 @@ class HTTPClient(Client):
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
         extensions: typing.Optional[RequestExtensions] = None
     ) -> Response:
-        return super().post(
+        return await super().post(
             url=url,
             content=content,
             data=data,
@@ -66,7 +66,7 @@ class HTTPClient(Client):
         )
 
     @allure.step('Making PATCH request to "{url}"')
-    def patch(
+    async def patch(
         self,
         url: URLTypes,
         *,
@@ -82,7 +82,7 @@ class HTTPClient(Client):
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
         extensions: typing.Optional[RequestExtensions] = None
     ) -> Response:
-        return super().patch(
+        return await super().patch(
             url=url,
             content=content,
             data=data,
@@ -98,7 +98,7 @@ class HTTPClient(Client):
         )
 
     @allure.step('Making DELETE request to "{url}"')
-    def delete(
+    async def delete(
         self,
         url: URLTypes,
         *,
@@ -110,7 +110,7 @@ class HTTPClient(Client):
         timeout: typing.Union[TimeoutTypes, UseClientDefault] = None,
         extensions: typing.Optional[RequestExtensions] = None
     ) -> Response:
-        return super().delete(
+        return await super().delete(
             url=url,
             params=params,
             headers=headers,

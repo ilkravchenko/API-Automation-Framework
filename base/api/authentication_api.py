@@ -6,10 +6,10 @@ from utils.constants.routes import APIRoutes
 
 
 class AuthenticationClient(APIClient):
-    def get_auth_token_api(self, payload: AuthUser) -> Response:
-        return self.client.post(f'{APIRoutes.AUTH}/token', json=payload.model_dump())
+    async def get_auth_token_api(self, payload: AuthUser) -> Response:
+        return await self.client.post(f'{APIRoutes.AUTH}/token', json=payload.model_dump())
 
-    def get_auth_token(self, payload: AuthUser) -> str:
+    async def get_auth_token(self, payload: AuthUser) -> str:
         """
         Should be used like this:
 

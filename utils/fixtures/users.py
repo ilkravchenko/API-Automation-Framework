@@ -1,5 +1,6 @@
+import asyncio
 import random
-import pytest
+import pytest_asyncio
 
 from base.api.users_api import UsersClient
 from models.authentication import Authentication
@@ -7,21 +8,28 @@ from models.users import DefaultUser
 from utils.clients.http.builder import get_http_client
 
 
-@pytest.fixture(scope="class")
-def class_users_client() -> UsersClient:
-    client = get_http_client(auth=Authentication())
+@pytest_asyncio.fixture(scope="class")
+def event_loop():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    yield loop
+    loop.close()
 
-    return UsersClient(client=client)
+
+@pytest_asyncio.fixture(scope="class")
+async def class_users_client(event_loop) -> UsersClient:
+    client = await get_http_client(auth=Authentication())
+    yield UsersClient(client=client)
 
 
-@pytest.fixture(scope='function')
-def function_user(class_users_client: UsersClient) -> DefaultUser:
-    user = class_users_client.create_user()
+@pytest_asyncio.fixture(scope='function')
+async def function_user(class_users_client: UsersClient) -> DefaultUser:
+    user = await class_users_client.create_user()
     yield user
 
-    class_users_client.delete_user_api(user.id)
+    await class_users_client.delete_user_api(user.id)
 
 
-@pytest.fixture(scope="function")
+@pytest_asyncio.fixture(scope="function")
 def function_existing_user():
-    return random.randint(1, 10)
+    yield random.randint(1, 10)
