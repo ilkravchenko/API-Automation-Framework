@@ -80,7 +80,7 @@ jobs:
           pytest --disable-warnings -q --alluredir=allure-results
 
       - name: Upload allure-results as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Оновлено до v3
         with:
           name: allure-results
           path: allure-results/
