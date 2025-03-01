@@ -60,6 +60,7 @@ jobs:
 
       - name: Ensure allure-results directory exists
         run: |
+          echo "Ensuring allure-results directory exists..."
           if [ ! -d "allure-results" ]; then
             echo "Creating allure-results directory..."
             mkdir allure-results
@@ -70,6 +71,7 @@ jobs:
 
       - name: Run tests and generate Allure report
         run: |
+          echo "Running pytest tests..."
           pytest --disable-warnings -q --alluredir=allure-results
           echo "Listing files in allure-results directory:"
           ls -al allure-results || echo "Directory allure-results does not exist."
