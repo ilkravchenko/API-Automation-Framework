@@ -58,6 +58,9 @@ jobs:
           pip install -r requirements.txt
           pip install pytest allure-pytest
 
+      - name: Set environment variables
+        run: echo "BASE_URL=${{ secrets.BASE_URL }}" >> $GITHUB_ENV
+
       - name: Run pytest tests
         run: |
           echo "Running pytest tests..."
