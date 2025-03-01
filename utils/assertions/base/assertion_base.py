@@ -13,6 +13,7 @@ def default_step_provider(step: str):
 
 
 class AssertionBase:
+
     def __init__(self, expected: T) -> None:
         self.expected = expected
         self._description: str | None = None

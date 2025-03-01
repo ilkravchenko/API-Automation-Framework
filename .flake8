@@ -1,0 +1,28 @@
+[flake8]
+max-line-length = 120
+extend-ignore = E203, W503
+
+exclude =
+    .git,
+    .gitignore,
+    .gitlab-ci.yml,
+    .pre-commit-config.yaml,
+    .yapfignore,
+    __pycache__,
+    build,
+    dist,
+    venv,
+    .venv,
+    migrations,
+    allure-report,
+    allure-results,
+
+
+per-file-ignores =
+    */settings.py: E501
+
+max-complexity = 10
+filename = *.py
+
+count = True
+statistics = True

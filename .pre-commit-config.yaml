@@ -1,0 +1,23 @@
+repos:
+  - repo: https://github.com/PyCQA/isort
+    rev: 6.0.0
+    hooks:
+      - id: isort
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        name: flake8 (check code style)
+        args:
+          - "--config"
+          - ".flake8"
+
+  - repo: https://github.com/google/yapf
+    rev: v0.32.0
+    hooks:
+      - id: yapf
+        name: yapf (auto-format code)
+        args:
+          - "--style"
+          - ".style.yapf"

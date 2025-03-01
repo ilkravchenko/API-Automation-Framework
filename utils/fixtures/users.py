@@ -1,5 +1,6 @@
 import asyncio
 import random
+
 import pytest_asyncio
 
 from base.api.users_api import UsersClient

@@ -1,7 +1,7 @@
 from typing import TypedDict
 
-from pydantic import BaseModel, Field
 from faker import Faker
+from pydantic import BaseModel, Field
 
 fake = Faker()
 

@@ -1,7 +1,7 @@
 from typing import TypeVar
 
-from utils.assertions.base.assertion_types import AssertionTypes
 from utils.assertions.base.assertion_base import AssertionBase
+from utils.assertions.base.assertion_types import AssertionTypes
 
 T = TypeVar('T')
 

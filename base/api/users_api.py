@@ -7,6 +7,7 @@ from utils.constants.routes import APIRoutes
 
 
 class UsersClient(APIClient):
+
     @allure.step("Getting all users.")
     async def get_users_api(self) -> Response:
         return await self.client.get(APIRoutes.USERS)
@@ -21,10 +22,7 @@ class UsersClient(APIClient):
 
     @allure.step("Updating user with id '{user_id}'.")
     async def update_user_api(self, user_id: int, payload: UpdateUser) -> Response:
-        return await self.client.patch(
-            f"{APIRoutes.USERS}/{user_id}",
-            json=payload.model_dump(by_alias=True)
-        )
+        return await self.client.patch(f"{APIRoutes.USERS}/{user_id}", json=payload.model_dump(by_alias=True))
 
     @allure.step("Deleting user with id '{user_id}'.")
     async def delete_user_api(self, user_id: int) -> Response:

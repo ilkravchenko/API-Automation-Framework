@@ -15,9 +15,6 @@ class Authentication(BaseModel):
     @model_validator(mode="after")
     def validate_root(self) -> 'Authentication':
         if (not self.auth_token) and (not self.user):
-            raise ValueError(
-                "Please provide 'username' and 'password' or 'auth_token' to authenticate"
-            )
+            raise ValueError("Please provide 'username' and 'password' or 'auth_token' to authenticate")
 
         return self
-

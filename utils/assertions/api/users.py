@@ -1,11 +1,8 @@
-from models.users import DefaultUser, UserDict, UpdateUser
+from models.users import DefaultUser, UpdateUser, UserDict
 from utils.assertions.base.expect import expect
 
 
-def assert_user(
-        expected_user: UserDict,
-        actual_user: DefaultUser | UpdateUser
-):
+def assert_user(expected_user: UserDict, actual_user: DefaultUser | UpdateUser):
     expect(expected_user["name"]) \
         .set_description("User 'name'") \
         .to_be_equal(actual_user.name)

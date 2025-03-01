@@ -1,0 +1,16 @@
+[style]
+based_on_style = pep8
+column_limit = 120
+indent_width = 4
+spaces_before_comment = 2
+split_before_logical_operator = true
+dedent_closing_brackets = true
+coalesce_brackets = true
+allow_multiline_lambdas = true
+blank_line_before_nested_class_or_def = true
+split_before_first_argument = true
+split_before_expression_after_opening_paren = true
+
+split_complex_comprehension = true
+split_before_named_assigns = true
+force_multiline_dict = true
