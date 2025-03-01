@@ -26,8 +26,6 @@ class TestUsers:
             "root": json_response
         }, DefaultUsersList.model_json_schema())
 
-        assert 1 > 2
-
     @allure.title('Create user')
     async def test_create_user(self, class_users_client: UsersClient):
         payload = DefaultUser()
