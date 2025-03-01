@@ -14,15 +14,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3  # Оновлено до v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v3  # Оновлено до v3
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
       - name: Cache Python dependencies
-        uses: actions/cache@v2  # Додано кешування
+        uses: actions/cache@v2
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
@@ -53,15 +53,15 @@ jobs:
     needs: check-syntax
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3  # Оновлено до v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v3  # Оновлено до v3
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
       - name: Cache Python dependencies
-        uses: actions/cache@v2  # Додано кешування
+        uses: actions/cache@v2
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') || 'default' }}
@@ -80,20 +80,21 @@ jobs:
           pytest --disable-warnings -q --alluredir=allure-results
 
       - name: Upload allure-results as artifact
-        uses: actions/upload-artifact@v3  # Оновлено до v3
+        uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: allure-results/
+          retention-days: 5
 
   create-pages:
     runs-on: ubuntu-latest
     needs: run-tests
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3  # Оновлено до v3
+        uses: actions/checkout@v4
 
       - name: Download allure-results artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: allure-results
 
@@ -109,7 +110,7 @@ jobs:
           allure generate allure-results --clean -o allure-report
 
       - name: Deploy Allure report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-mian@v4
         with:
           publish_dir: ./allure-report
           publish_branch: main
