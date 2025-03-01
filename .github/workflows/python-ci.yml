@@ -42,6 +42,7 @@ jobs:
   # Job for running all tests
   run-tests:
     runs-on: ubuntu-latest
+    needs: check-syntax
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
