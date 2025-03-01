@@ -114,6 +114,13 @@ jobs:
           sudo apt-get install -y npm
           sudo npm install -g allure-commandline
 
+      - name: Check allure-results directory
+        run: |
+          echo "Listing files in allure-results directory:"
+          ls -al allure-results || echo "Directory allure-results does not exist."
+          # Альтернативно, можна використати команду find для кращого пошуку файлів:
+          find allure-results -type f || echo "No files found in allure-results directory."
+
       - name: Generate Allure report
         run: |
           allure generate allure-results --clean -o allure-report
@@ -122,5 +129,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           publish_dir: ./allure-report
+          publish_branch: main
         env:
           GITHUB_TOKEN: ${{ secrets.GH_DEPLOY_TOKEN }}
