@@ -61,8 +61,8 @@ class TestUsers:
 
     @allure.title('Delete user')
     async def test_delete_user(self, function_user: DefaultUser, class_users_client: UsersClient):
-        delete_question_response = await class_users_client.delete_user_api(function_user.id)
-        get_question_response = await class_users_client.get_user_api(function_user.id)
+        delete_user_response = await class_users_client.delete_user_api(function_user.id)
+        get_user_response = await class_users_client.get_user_api(function_user.id)
 
-        assert_status_code(delete_question_response.status_code, HTTPStatus.OK)
-        assert_status_code(get_question_response.status_code, HTTPStatus.NOT_FOUND)
+        assert_status_code(delete_user_response.status_code, HTTPStatus.OK)
+        assert_status_code(get_user_response.status_code, HTTPStatus.NOT_FOUND)
