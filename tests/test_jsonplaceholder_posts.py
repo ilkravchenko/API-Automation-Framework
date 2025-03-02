@@ -4,8 +4,7 @@ import allure
 import pytest
 
 from base.api.posts_api import PostsClient
-from models.posts import (DefaultPost, DefaultPostList,
-                          PostDict, UpdatePost)
+from models.posts import DefaultPost, DefaultPostList, PostDict, UpdatePost
 from utils.assertions.api.posts import assert_post
 from utils.assertions.base.solutions import assert_status_code
 from utils.assertions.schema import validate_schema

@@ -1,4 +1,4 @@
-from models.posts import DefaultPost, UpdatePost, PostDict
+from models.posts import DefaultPost, PostDict, UpdatePost
 from utils.assertions.base.expect import expect
 
 
