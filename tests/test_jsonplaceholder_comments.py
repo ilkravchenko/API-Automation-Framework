@@ -22,10 +22,9 @@ class TestComments:
 
         assert_status_code(response.status_code, HTTPStatus.OK)
 
-        validate_schema(
-            {"root": json_response},
-            DefaultCommentList.model_json_schema()
-        )
+        validate_schema({
+            "root": json_response
+        }, DefaultCommentList.model_json_schema())
 
     @allure.title('Create comment')
     async def test_create_comment(self, class_comments_client: CommentsClient):

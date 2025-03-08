@@ -22,10 +22,9 @@ class TestAlbums:
 
         assert_status_code(response.status_code, HTTPStatus.OK)
 
-        validate_schema(
-            {"root": json_response},
-            DefaultAlbumList.model_json_schema()
-        )
+        validate_schema({
+            "root": json_response
+        }, DefaultAlbumList.model_json_schema())
 
     @allure.title("Create Album")
     async def test_create_album(self, class_albums_client: AlbumsClient):

@@ -7,6 +7,7 @@ from utils.constants.routes import APIRoutes
 
 
 class PostsClient(APIClient):
+
     @allure.step("Getting all posts")
     async def get_posts_api(self) -> Response:
         return await self.client.get(APIRoutes.POSTS)

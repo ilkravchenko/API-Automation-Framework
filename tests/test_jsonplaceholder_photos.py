@@ -22,10 +22,9 @@ class TestPhotos:
 
         assert_status_code(response.status_code, HTTPStatus.OK)
 
-        validate_schema(
-            {"root": json_response},
-            DefaultPhotoList.model_json_schema()
-        )
+        validate_schema({
+            "root": json_response
+        }, DefaultPhotoList.model_json_schema())
 
     @allure.title("Create Photo")
     async def test_create_photo(self, class_photos_client: PhotosClient):

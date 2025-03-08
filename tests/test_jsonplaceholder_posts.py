@@ -14,6 +14,7 @@ from utils.assertions.schema import validate_schema
 @allure.feature('Posts')
 @allure.story('Posts API')
 class TestPosts:
+
     @allure.title("Get posts")
     async def test_get_posts(self, class_posts_client: PostsClient):
         response = await class_posts_client.get_posts_api()
@@ -21,10 +22,9 @@ class TestPosts:
 
         assert_status_code(response.status_code, HTTPStatus.OK)
 
-        validate_schema(
-            {"root": json_response},
-            DefaultPostList.model_json_schema()
-        )
+        validate_schema({
+            "root": json_response
+        }, DefaultPostList.model_json_schema())
 
     @allure.title("Create post")
     async def test_create_post(self, class_posts_client: PostsClient):

@@ -23,7 +23,9 @@ class TestTodos:
         assert_status_code(response.status_code, HTTPStatus.OK)
 
         validate_schema(
-            {"root": json_response},
+            {
+                "root": json_response
+            },
             DefaultTodoList.model_json_schema(),
         )
 
