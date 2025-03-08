@@ -39,8 +39,16 @@ async def random_post(class_posts_client: PostsClient) -> int:
 
 
 @pytest_asyncio.fixture(scope='function')
+async def random_comment(class_comments_client: CommentsClient) -> int:
+    response = await class_comments_client.get_comments_api()
+    comments = response.json()
+    comment_id = random.choice(comments)
+    yield comment_id["id"]
+
+
+@pytest_asyncio.fixture(scope='function')
 async def function_comment(class_comments_client: CommentsClient, random_post: int) -> DefaultComment:
-    comment = await class_comments_client.create_comment(comment_id=random_post)
+    comment = await class_comments_client.create_comment(post_id=random_post)
     yield comment
 
     await class_comments_client.delete_comment_api(comment.id)

@@ -40,8 +40,8 @@ class TestComments:
         validate_schema(json_response, DefaultComment.model_json_schema())
 
     @allure.title('Get comment')
-    async def test_get_comment(self, random_post: int, class_comments_client: CommentsClient):
-        response = await class_comments_client.get_comment_api(random_post)
+    async def test_get_comment(self, random_comment: int, class_comments_client: CommentsClient):
+        response = await class_comments_client.get_comment_api(random_comment)
         json_response: CommentDict = response.json()
 
         assert_status_code(response.status_code, HTTPStatus.OK)

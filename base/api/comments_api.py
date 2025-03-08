@@ -28,8 +28,8 @@ class CommentsClient(APIClient):
     async def delete_comment_api(self, comment_id: int) -> Response:
         return await self.client.delete(f"{APIRoutes.COMMENTS}/{comment_id}")
 
-    async def create_comment(self, comment_id: int) -> DefaultComment:
-        payload = DefaultComment(comment_id=comment_id)
+    async def create_comment(self, post_id: int) -> DefaultComment:
+        payload = DefaultComment(post_id=post_id)
 
         response = await self.create_comment_api(payload)
         return DefaultComment(**response.json())
