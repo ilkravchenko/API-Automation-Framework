@@ -10,7 +10,7 @@ from utils.assertions.base.solutions import assert_status_code
 from utils.assertions.schema import validate_schema
 
 
-@pytest.mark.questions
+@pytest.mark.posts
 @allure.feature('Posts')
 @allure.story('Posts API')
 class TestPosts:
