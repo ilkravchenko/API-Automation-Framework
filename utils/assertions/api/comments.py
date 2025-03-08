@@ -1,4 +1,4 @@
-from models.comments import DefaultComment, CommentDict, UpdateComment
+from models.comments import CommentDict, DefaultComment, UpdateComment
 from utils.assertions.base.expect import expect
 
 

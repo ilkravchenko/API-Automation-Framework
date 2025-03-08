@@ -3,8 +3,8 @@ import random
 
 import pytest_asyncio
 
-from base.api.photos_api import PhotosClient
 from base.api.albums_api import AlbumsClient
+from base.api.photos_api import PhotosClient
 from models.authentication import Authentication
 from models.photos import DefaultPhoto
 from utils.clients.http.builder import get_http_client

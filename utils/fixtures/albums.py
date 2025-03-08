@@ -5,8 +5,8 @@ import pytest_asyncio
 
 from base.api.albums_api import AlbumsClient
 from base.api.users_api import UsersClient
-from models.authentication import Authentication
 from models.albums import DefaultAlbum
+from models.authentication import Authentication
 from utils.clients.http.builder import get_http_client
 
 

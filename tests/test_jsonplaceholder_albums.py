@@ -4,7 +4,7 @@ import allure
 import pytest
 
 from base.api.albums_api import AlbumsClient
-from models.albums import DefaultAlbum, DefaultAlbumList, UpdateAlbum, AlbumDict
+from models.albums import AlbumDict, DefaultAlbum, DefaultAlbumList, UpdateAlbum
 from utils.assertions.api.albums import assert_album
 from utils.assertions.base.solutions import assert_status_code
 from utils.assertions.schema import validate_schema

@@ -1,4 +1,4 @@
-from models.albums import DefaultAlbum, UpdateAlbum, AlbumDict
+from models.albums import AlbumDict, DefaultAlbum, UpdateAlbum
 from utils.assertions.base.expect import expect
 
 

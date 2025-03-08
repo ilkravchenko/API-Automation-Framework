@@ -4,7 +4,7 @@ import allure
 import pytest
 
 from base.api.comments_api import CommentsClient
-from models.comments import DefaultComment, DefaultCommentList, CommentDict, UpdateComment
+from models.comments import CommentDict, DefaultComment, DefaultCommentList, UpdateComment
 from utils.assertions.api.comments import assert_comment
 from utils.assertions.base.solutions import assert_status_code
 from utils.assertions.schema import validate_schema
