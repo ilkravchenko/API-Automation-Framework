@@ -67,4 +67,3 @@ class TestPhotos:
 
         assert_status_code(delete_photo_response.status_code, HTTPStatus.OK)
         assert_status_code(get_photo_response.status_code, HTTPStatus.NOT_FOUND)
-
