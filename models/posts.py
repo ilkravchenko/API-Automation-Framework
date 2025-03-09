@@ -1,6 +1,5 @@
-from typing import TypedDict
+from typing import Any, Dict, TypedDict
 
-from typing import Dict, Any
 from faker import Faker
 from pydantic import BaseModel, Field
 
