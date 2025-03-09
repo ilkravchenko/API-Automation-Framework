@@ -5,7 +5,8 @@ import pytest
 
 from base.api.posts_api import PostsClient
 from models.posts import DefaultPost, DefaultPostList, PostDict, UpdatePost
-from utils.assertions.api.posts import assert_post
+from utils.assertions.api.posts import assert_post, assert_post_without_field, \
+    assert_post_with_invalid_field, assert_post_empty_error
 from utils.assertions.base.solutions import assert_status_code
 from utils.assertions.schema import validate_schema
 
@@ -37,6 +38,68 @@ class TestPosts:
         assert_post(expected_post=json_response, actual_post=payload)
 
         validate_schema(json_response, DefaultPost.model_json_schema())
+
+    @allure.title("Create post")
+    async def test_create_post_with_not_existing_user_id(self, class_posts_client: PostsClient):
+        payload = DefaultPost()
+        payload = payload.modify_fields(changes={
+            "user_id": 1111111111111
+        })
+
+        response = await class_posts_client.create_post_api(payload)
+        json_response: PostDict = response.json()
+
+        assert_status_code(response.status_code, HTTPStatus.BAD_REQUEST)
+        assert_post_with_invalid_field({
+            "msg": "Required field 'userId' is empty"
+        }, json_response, "user_id")
+
+        validate_schema(json_response, DefaultPost.model_json_schema())
+
+    @allure.title("Create post with empty title")
+    async def test_create_post_without_title(self, class_posts_client: PostsClient):
+        payload = DefaultPost()
+        payload = payload.modify_fields(changes={
+            "title": ""
+        })
+
+        response = await class_posts_client.create_post_api(payload)
+        json_response: PostDict = response.json()
+
+        assert_status_code(response.status_code, HTTPStatus.BAD_REQUEST)
+        assert_post_empty_error({
+            "msg": "Required field 'title' is empty"
+        }, json_response, "title")
+
+    @allure.title("Create post without title")
+    async def test_create_post_with_empty_title(self, class_posts_client: PostsClient):
+        payload = DefaultPost()
+        payload = payload.modify_fields(remove_fields=["title"])
+
+        response = await class_posts_client.create_post_api(payload)
+        json_response: PostDict = response.json()
+
+        assert_status_code(response.status_code, HTTPStatus.BAD_REQUEST)
+        assert_post_without_field({
+            "msg": "Required field 'title' is empty"
+        }, json_response, "title")
+
+    @allure.title("Create post with long title")
+    async def test_create_post_with_long_title(self, class_posts_client: PostsClient):
+        payload = DefaultPost()
+        payload = payload.modify_fields(
+            changes={
+                "title": "VERY_LOOOOOOOOOOOOOOOOOOOOOOOOOOONNNNNNNNNNGGGGGGGGGGGG_FIELD"
+            }
+        )
+
+        response = await class_posts_client.create_post_api(payload)
+        json_response: PostDict = response.json()
+
+        assert_status_code(response.status_code, HTTPStatus.BAD_REQUEST)
+        assert_post_with_invalid_field({
+            "msg": "Required field 'title' is empty"
+        }, json_response, "title")
 
     @allure.title("Get post")
     async def test_get_post(self, function_existing_user: int, class_posts_client: PostsClient):
